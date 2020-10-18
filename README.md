@@ -8,6 +8,7 @@ There are a lot of factors that go into making a big move, and for many people, 
 
 ### Tech Stack and Algorithms used
 * Python
+*Geopy and Nominatim
 * KNN Clustering Algorithm
 * Streamlit Webapp
 
