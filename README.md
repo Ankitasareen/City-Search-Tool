@@ -11,7 +11,7 @@ There are a lot of factors that go into making a big move, and for many people, 
 *Geopy and Nominatim
 * KNN Clustering Algorithm
 * Streamlit Webapp
-
+* Heroku webapp
 
 ### Installation
 To run the jupyter notebooks, make sure you have anaconda already set up, then.
