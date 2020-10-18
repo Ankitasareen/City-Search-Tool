@@ -17,7 +17,10 @@ There are a lot of factors that go into making a big move, and for many people, 
 To run the jupyter notebooks, make sure you have anaconda already set up, then.
 * Clone this repository `git clone https://github.com/Ankitasareen/City-Search-Tool
 * Activate conda environment in cmd 
-* Run the jupyter notebook
+* Run the jupyter notebook City_search_tool.ipynb.
+To run the interactive UI for data visualisation deployed in streamlit,
+* streamlit run app2.py in conda envt.
+The web app is further deplyed in heroku [link]https://city-search-tool-app-datathon.herokuapp.com/.
 
 
 ### Functionalities
