@@ -26,6 +26,10 @@ The web app is further deplyed in heroku [link]https://city-search-tool-app-data
 ### Functionalities
 Basically, this helps the user to search for the cities according to the various inputs entered by him such as healthcare,pollution, crime-rate etc. Clustering algorithm helps in finding and grouping those cities together. Data visualization helps further in making the results more clear which further makes it easier for the user to make the right choice of city he wants to live in.
 
+## Challenges we ran into
+*We faced problems while selecting appropriate clustering algorithm as per our needs.
+*We had to learn using Streamlit in a small amount of time and implement.
+*We learnt heroku deployment for webapp for the first time, faced various challenges but finally could deploy it.
 
 
 
