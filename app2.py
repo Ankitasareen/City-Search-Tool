@@ -18,7 +18,7 @@ def load_movehuncostofliving(nrows):
 
 #@st.cache(persist = True)
 def load_lat(nrows):
-    data2 = pd.read_csv("lat.csv" , nrows = nrows)
+    data2 = pd.read_csv("lat2.csv" , nrows = nrows)
     return data2
 
 
@@ -115,7 +115,8 @@ st.plotly_chart(fig)
 ##########################################################################################
 st.title("Find out which features matter the most in your city recommendation")
 st.write("Here, in this piechart by selecting a city we can see how much a factor is important for that city.")
-user_input = st.text_input("Enter City" )
+
+user_input = st.text_input("Enter City" , "Leeds" )
 
 City = user_input
 inc_features = [ 'Movehub_Rating', 'Purchase_Power', 'Health_Care', 
@@ -148,32 +149,33 @@ st.pyplot(fig1)
 st.title("Customised City Choosing tool")
 st.write("Here, in this slider you can choose any values")
 
-Movehub_Rating = st.slider("Movehub Rating", min_value=0, max_value=100, value=70, step=None, format=None, key=None)
-Purchase_Power = st.slider("Purchase Power", min_value=0, max_value=100, value=1, step=None, format=None, key=None)
-Health_Care = st.slider("Health_Care", min_value=0, max_value=100, value=80, step=None, format=None, key=None)
-Quality_of_Life = st.slider("Quality_of_Life", min_value=0, max_value=100, value=0, step=None, format=None, key=None)
-Avg_Disposable_Income =st.slider('Avg_Disposable_Income', min_value=0, max_value=5000, value=0, step=None, format=None, key=None)
-Pollution = st.slider('Pollution', min_value=0, max_value=100, value=100, step=None, format=None, key=None)
-Crime_Rating = st.slider('Crime_Rating', min_value=0, max_value=100, value=100, step=None, format=None, key=None)
-Cappuccino = st.slider('Cappuccino', min_value=0, max_value=5, value=5, step=None, format=None, key=None)
-Cinema = st.slider('Cinema', min_value=0, max_value=100 , value=100, step=None, format=None, key=None)
-Wine = st.slider('Wine', min_value=0, max_value=30, value=30, step=None, format=None, key=None)
-Gasoline = st.slider('Gasoline', min_value=0, max_value=2, value=2, step=None, format=None, key=None)
-Avg_Rent = st.slider( 'Avg_Rent', min_value=0, max_value=6000, value=600, step=None, format=None, key=None)
+movehub_rating = st.slider("Movehub Rating", min_value=0, max_value=100, value=70, step=None, format=None, key=None)
+purchase_power = st.slider("Purchase Power", min_value=0, max_value=100, value=1, step=None, format=None, key=None)
+health_care = st.slider("Health_Care", min_value=0, max_value=100, value=70, step=None, format=None, key=None)
+quality_of_life = st.slider("Quality_of_Life", min_value=0, max_value=100, value=0, step=None, format=None, key=None)
+avg_disposable_income =st.slider('Avg_Disposable_Income', min_value=0, max_value=5000, value=0, step=None, format=None, key=None)
+pollution = st.slider('Pollution', min_value=0, max_value=100, value=100, step=None, format=None, key=None)
+crime_rating = st.slider('Crime_Rating', min_value=0, max_value=100, value=100, step=None, format=None, key=None)
+cappuccino = st.slider('Cappuccino', min_value=0, max_value=5, value=5, step=None, format=None, key=None)
+cinema = st.slider('Cinema', min_value=0, max_value=100 , value=100, step=None, format=None, key=None)
+wine = st.slider('Wine', min_value=0, max_value=30, value=30, step=None, format=None, key=None)
+gasoline = st.slider('Gasoline', min_value=0, max_value=2, value=2, step=None, format=None, key=None)
+avg_rent = st.slider( 'Avg_Rent', min_value=0, max_value=6000, value=600, step=None, format=None, key=None)
 
-df1 = df[((df.Movehub_Rating )>float(Movehub_Rating))&((df.Purchase_Power)>float(Purchase_Power))&
-         ((df.Health_Care )>float(Health_Care))& ((df.Pollution )<float(Pollution))
-         &((df.Crime_Rating )<float(Crime_Rating))&((df.Avg_Rent )<float(Avg_Rent))&((df.Avg_Disposable_Income )>float(Avg_Disposable_Income))
-         &((df.Gasoline )<float(Gasoline))&((df.Cinema )<int(Cinema))&((df.Wine )<int(Wine))&((df.Cappuccino )<int(Cappuccino))]
+df1 = df[((df.Movehub_Rating )>float(movehub_rating))&((df.Purchase_Power)>float(purchase_power))&
+         ((df.Health_Care )>float(health_care))& ((df.Pollution )<float(pollution))
+         &((df.Crime_Rating )<float(crime_rating))&((df.Avg_Rent )<float(avg_rent))&((df.Avg_Disposable_Income )>float(avg_disposable_income))
+         &((df.Gasoline )<float(gasoline))&((df.Cinema )<int(cinema))&((df.Wine )<int(wine))&((df.Cappuccino )<int(cappuccino))]
 
-features = df.columns
+features = df1.columns
 fig5 = px.scatter_mapbox(df1,
                         lat="lat", lon="lon",  hover_name="City",
                         hover_data=features,color='Overall_Score',
                         color_continuous_scale=px.colors.cyclical.IceFire, size_max=15, zoom=1,
                         mapbox_style="carto-positron")
 st.plotly_chart(fig5)
-df1.sort_values('Overall_Score',ascending=False)
+st.write(df1.sort_values('Overall_Score',ascending=False))
+
 
 
 #########################################################################################3
@@ -191,7 +193,7 @@ df_k_means = pd.concat([df_city,df],axis = 1)
 
 st.write("GROUPED ACCORDING TO WHAT FEATURES YOU CHOOSE")
 option2 = st.selectbox('What features do you prefer?' , 
-                        ('City', 'Movehub_Rating', 'Purchase_Power', 'Health_Care', 'Pollution',
+                        ('Movehub_Rating', 'Purchase_Power', 'Health_Care', 'Pollution',
        'Quality_of_Life', 'Crime_Rating', 'Cappuccino', 'Cinema',
        'Wine', 'Gasoline', 'Avg_Rent', 'Avg_Disposable_Income',
        'Overall_Score') , key = "1"
@@ -201,7 +203,7 @@ option2 = st.selectbox('What features do you prefer?' ,
 
 st.write("You selected:" , option2)
 
-X1=df_k_means[[option2]]
+X1 = df_k_means[[option2]]
 wcss=[]
 for i in range(1,11):
     kmeans=KMeans(n_clusters=i, init='k-means++',random_state=0)
